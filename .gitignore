@@ -1,7 +1,7 @@
 node_modules/
 bower_components/
 *.log
-/server/db/db.js
+
 /client/bundled
 build/
 dist/

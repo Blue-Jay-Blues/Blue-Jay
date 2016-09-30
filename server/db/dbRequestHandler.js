@@ -7,8 +7,12 @@ module.exports = {
   //firstname, lastname, email
   addUser: (req, res) => {
     var params = req.body;
-    User.create(params).then(function(data, err) {
+    User.create(params)
+    .then(function(data, err) {
       res.send({'data': 'User created.'});
+    })
+    .catch(function (error) {
+      res.send(error);
     });
   },
 
@@ -20,6 +24,8 @@ module.exports = {
     }).then(function(user) {
       user.destroy();
       res.send({'data': 'User removed.'});
+    }).catch(function (error) {
+      res.send(error);
     });
   },
 
@@ -35,6 +41,8 @@ module.exports = {
     console.log(req.body);
     Classroom.create(req.body).then(function(data) {
       res.send({'data': 'Classroom created.'});
+    }).catch(function (error) {
+      res.send(error);
     });
   },
 
@@ -45,6 +53,8 @@ module.exports = {
     }).then(function (classroom) {
       classroom.destroy();
       res.send({'data': 'Classroom deleted.'});
+    }).catch(function (error) {
+      res.send(error);
     });
   },
 
