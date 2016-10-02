@@ -1,0 +1,52 @@
+.color-primary-0 { color: #393276 }
+.color-primary-1 { color: #837EB1 } /* Text */
+.color-primary-2 { color: #5B5494 } /* Component Background */
+.color-primary-3 { color: #1F1959 } /* Component Foreground */
+.color-primary-4 { color: #0D083B } /* Background */
+
+.color-primary-0 { color: #393276 !important} /* Component Background */
+.color-text { color: #837EB1 !important} /* Text */
+.color-component-background { background-color: #5B5494 !important}
+.color-component-foreground { background-color: #1F1959 !important} /* Component Foreground */
+.color-background { background-color: #0D083B !important} /* Background */
+
+.collapsible div {
+  background-color: #1F1959 !important; /* Component Foreground */
+}
+.collapsible p { background-color: #393276 !important; /* Component Background */ }
+
+li.collection-header,
+li.collection-item { background-color: #1F1959 !important; /* Component Foreground */ }
+
+.indicator-item.active { background-color: #393276 !important; /* Component Background */ }
+
+/*Fonts:*/
+html {
+  font-family: 'Orbitron', sans-serif;
+}
+
+p {
+  font-family: 'Economica', sans-serif;
+}
+
+/*Borders:*/;
+ul.collapsible {
+/*  border-radius: 5px !important;*/
+  border-color: #837EB1; /* Text */
+}
+
+ul.collection {
+/*  border-radius: 5px !important;*/
+  border-color: #837EB1; /* Text */
+}
+
+/*NOTE: Clean up the use of :not by changing materialize*/
+li.collection-item:not(:last-child) {
+  border-bottom: 1px solid #837EB1; /* Text */
+}
+
+li.collection-header, li.collection-item:last-child {
+  border-bottom: none;
+}
+
+li.collection-header { border-bottom: none !important; }

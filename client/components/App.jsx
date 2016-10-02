@@ -13,7 +13,7 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <NavBar />
+        <NavBar className="color-component-background"/>
         { this.props.children } 
       </div>
     );

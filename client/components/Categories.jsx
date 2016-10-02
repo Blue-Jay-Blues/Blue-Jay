@@ -5,11 +5,11 @@ export default () => {
 	return (
 		<div>
 			<ul className="collection with-header">
-				<li className="collection-header">
+				<li className="collection-header color-component-foreground">
 				<h5 className='align-center'>Categories</h5>
 				</li>
 			</ul>
-			<ul className="collapsible" data-collapsible="accordion">
+			<ul className="collapsible color-component-foreground" data-collapsible="accordion">
 				<li>
 					<div className="collapsible-header"><i className="material-icons">place</i>Astronomy</div>
 					<div className="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>

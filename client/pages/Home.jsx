@@ -15,7 +15,7 @@ class Home extends Component {
 	render() {
 	  return (
 	  	<div>
-			<Carousel />
+				<Carousel />
 		    <div className='container'>	    
 		    	<div className='row'>
 		    		<div className='col s12 m6'>
