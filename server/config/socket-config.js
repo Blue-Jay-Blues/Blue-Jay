@@ -61,6 +61,7 @@ io.sockets.on('connection', function(socket) {
       var yourId = socket.id;
 
       socket.join(data.roomName);
+      console.log(data.roomName);
 
       rooms[data.roomName]._remove(socket.id);
       rooms[data.roomName].add(yourId, Date.now() - data.time, function (targetId, selfId) {
@@ -95,6 +96,7 @@ io.sockets.on('connection', function(socket) {
               for (var i = 0; i < row.ownedStreams.length; i++) { 
                 if ((row.username + '/' + row.ownedStreams[i].title).toLowerCase() === data.roomName.toLowerCase()) {
                   socket.join(data.roomName);
+                  console.log(data.roomName);
 
                   currentRoom[socket.id] = data.roomName;
 
@@ -156,7 +158,23 @@ io.sockets.on('connection', function(socket) {
     }
   });
 
+  //Whiteboard Events:
+  //Join the specified room:
+  // socket.on('room', (roomName) => {
+  //   room = roomName;
+  //   socket.join(roomName);
+  // });
+
+  //Broadcast data from the client to other clients in the same room:
+  socket.on('dataFromClient', (data) => {
+    console.log('Message recieved');
+    console.log(data.room);
+    socket.broadcast.to(data.room).emit('dataFromServer', data.canvas);
+  });
+
 });
+
+
 
 
 module.exports = server;
