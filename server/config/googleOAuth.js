@@ -1,7 +1,7 @@
-var passport = require('passport');
-var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-var sql = require('../db/sqlConnectionHelper.js');
-var jwt = require('./authentication.js');
+const passport = require('passport');
+const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+const sql = require('../db/sqlConnectionHelper.js');
+const jwt = require('./authentication.js');
 
 if (process.env.CI) {
   var keys = require('./credentials/apiKeys.example.js');
@@ -46,7 +46,7 @@ passport.use(new GoogleStrategy({
       var keys = [];
       var values = [];
 
-      for (var key in newUser) {
+      for (let key in newUser) {
         keys.push(key);
         values.push(newUser[key]);
       }

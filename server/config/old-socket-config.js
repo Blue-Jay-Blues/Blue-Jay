@@ -23,15 +23,12 @@ io.sockets.on('connection', function(socket) {
 
   socket.on('check', function (data) {
     if (socket.adapter.rooms[data.roomName]) {
-      var userIds = [];
+      var userIds = socket.adapter.rooms[data.roomName].sockets.keys();
       var yourId;
 
-      for (var key in socket.adapter.rooms[data.roomName].sockets) {
-        userIds.push(key);
-      }
-
       socket.join(data.roomName);
-      for (var key in socket.adapter.rooms[data.roomName].sockets) {
+
+      for (let key in socket.adapter.rooms[data.roomName].sockets) {
         if (userIds.indexOf(key) === -1) {
           yourId = key;
         }

@@ -1,9 +1,9 @@
-var socketIO = require('socket.io')();
-var Tree = require('./connectionTree.js');
-var fs = require('fs');
-var path = require('path');
-var jwt = require('./authentication.js');
-var db = require('../db/rawSQLHandlers.js');
+const socketIO = require('socket.io')();
+const Tree = require('./connectionTree.js');
+const fs = require('fs');
+const path = require('path');
+const jwt = require('./authentication.js');
+const db = require('../db/rawSQLHandlers.js');
 
 var serverConfig = {
   key: fs.readFileSync(path.join(__dirname, './credentials/key.pem')),
@@ -19,18 +19,18 @@ var rooms = {};
 
 var currentRoom = {};
 
-
 io.sockets.on('connection', function(socket) {
-
 
   /////// LiveNow Component Code /////////////////////////////////////
 
   socket.on('getStreams', function () {
     var results = [];
     var realRoom = true;
-    for (var roomName in socket.adapter.rooms) {
+    //Iterate through the rooms:
+    for (let roomName in socket.adapter.rooms) {
       var room = socket.adapter.rooms[roomName];
-      for (var socketId in room.sockets) {
+      //Iterate through the sockedIds in the current room:      
+      for (let socketId in room.sockets) {
         if (socketId === roomName) {
           realRoom = false;
           break;
@@ -85,16 +85,13 @@ io.sockets.on('connection', function(socket) {
       jwt.decode(data.token, function (error, userData) {
 
         if (error) {
-
           console.log(error);
           socket.emit('failure', 'That ain\'t a real token!');
-
         } else {
-
           db.getUser(userData, {
             send: function (row) {
-              for (var i = 0; i < row.ownedStreams.length; i++) { 
-                if ((row.username + '/' + row.ownedStreams[i].title).toLowerCase() === data.roomName.toLowerCase()) {
+              for (let ownedStream of row.ownedStreams) {
+                if ((row.username + '/' + ownedStream.title).toLowerCase() === data.roomName.toLowerCase()) {
                   socket.join(data.roomName);
                   console.log(data.roomName);
 
@@ -102,7 +99,7 @@ io.sockets.on('connection', function(socket) {
 
                   rooms[data.roomName] = new Tree(socket.id, 0);
                   
-                  db.toggleStreamOn({body: {title: row.ownedStreams[i].title}});
+                  db.toggleStreamOn({body: {title: ownedStream.title}});
 
                   socket.emit('created', 'You have created the room: "' + data.roomName + '"');
                   return;
