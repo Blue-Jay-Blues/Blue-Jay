@@ -27,10 +27,10 @@ io.sockets.on('connection', function(socket) {
     var results = [];
     var realRoom = true;
     //Iterate through the rooms:
-    for (let roomName in socket.adapter.rooms) {
+    for (var roomName in socket.adapter.rooms) {
       var room = socket.adapter.rooms[roomName];
       //Iterate through the sockedIds in the current room:      
-      for (let socketId in room.sockets) {
+      for (var socketId in room.sockets) {
         if (socketId === roomName) {
           realRoom = false;
           break;
@@ -90,7 +90,7 @@ io.sockets.on('connection', function(socket) {
         } else {
           db.getUser(userData, {
             send: function (row) {
-              for (let ownedStream of row.ownedStreams) {
+              for (var ownedStream of row.ownedStreams) {
                 if ((row.username + '/' + ownedStream.title).toLowerCase() === data.roomName.toLowerCase()) {
                   socket.join(data.roomName);
                   console.log(data.roomName);

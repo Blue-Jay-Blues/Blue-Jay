@@ -57,7 +57,7 @@ Tree.prototype._insert = function (tree, callback) {
 
 Tree.prototype.remove = function (key, callback) {
   //Iterate through the children
-  for (let i = 0; i < this.children.length; i++) {
+  for (var i = 0; i < this.children.length; i++) {
     //Remove the current child if it is the one we are looking for:
     if (this.children[i].key === key) {
       var temp = this.children[i];

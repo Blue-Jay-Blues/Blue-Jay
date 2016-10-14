@@ -46,7 +46,7 @@ passport.use(new GoogleStrategy({
       var keys = [];
       var values = [];
 
-      for (let key in newUser) {
+      for (var key in newUser) {
         keys.push(key);
         values.push(newUser[key]);
       }
